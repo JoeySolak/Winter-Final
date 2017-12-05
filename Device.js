@@ -40,18 +40,19 @@ function Device(t,ma,c){
             let charge = (this.millAmps / this.capacity);
             let output = 1 - this.rate[1];
             let time = min / 60;
-            this.juice = (this.millAmps * 0.9765) + this.juice + charge*output*time;
+            this.juice = this.juice + charge*output*time*0.9765;
         }
         else if(this.state = "active"){
             let charge = (this.millAmps / this.capacity);
             let output = 1 - this.rate[2];
             let time = min / 60;
-            this.juice = this.juice + charge*output*time;
+            this.juice = this.juice + charge*output*time*0.77;
         }
 
         //resets juice to 1 if it has exceeded 1
-        if(){}
-
+        if(this.juice>1){
+          this.juice=1;
+        }
     };
 
 }//end of the device declaration
