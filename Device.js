@@ -14,19 +14,20 @@ function Device(t,ma,c){
     this.on = function(){
         if(this.state == "off" && this.juice >0){
            this.state = "idle";
-        }
-        else if (this.state == "off" && this.juice<=0){
-            this.state = "off";
-           //complete from instructions
-        }
-        else if (this.state == "idle" && this.juice>0){
-            this.state = "active";
 
         }
-        else if (this.state == "on" && this.juice>0)
-            this.state = "active";
-        }
-    };
+    this.off = function(){
+        if(this.state == "idle" || this.juice<=0 || this.state == "active")
+        this.state = "off";
+    }
+    this.wake = function(){
+        if((this.state == "idle" || this.state == "off") && this.juice>0)
+        this.state = "wake";
+    }
+    this.sleep = function(){
+        if((this.state == "idle" || this.state == "active") && this.juice>0;)
+        this.state = "sleep";
+    }
 
     this.charge = function(min){
         //adds more electricity to the device's juice depending on its state
