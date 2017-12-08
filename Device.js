@@ -16,18 +16,21 @@ function Device(t,ma,c){
            this.state = "idle";
 
         }
+    }
     this.off = function(){
-        if(this.state == "idle" || this.juice<=0 || this.state == "active")
+        if(this.state == "idle" || this.juice<=0 || this.state == "active"){
         this.state = "off";
     }
+}
     this.wake = function(){
-        if((this.state == "idle" || this.state == "off") && this.juice>0)
-        this.state = "wake";
+        if((this.state == "idle" || this.state == "off") && this.juice>0){
+        this.state = "active";
     }
     this.sleep = function(){
-        if((this.state == "idle" || this.state == "active") && this.juice>0;)
-        this.state = "sleep";
+        if(this.state == "active" && this.juice>0){
+        this.state = "idle";
     }
+}
 
     this.charge = function(min){
         //adds more electricity to the device's juice depending on its state
@@ -36,6 +39,7 @@ function Device(t,ma,c){
             let output = 1 - this.rate[0];
             let time = min / 60;
             this.juice = this.juice + charge*output*time;
+
         }
         else if(this.state = "idle"){
             let charge = (this.millAmps / this.capacity);
@@ -49,14 +53,14 @@ function Device(t,ma,c){
             let time = min / 60;
             this.juice = this.juice + charge*output*time*0.77;
         }
-
+}
         //resets juice to 1 if it has exceeded 1
         if(this.juice>1){
           this.juice=1;
-        }
-    };
+      };
 
-}//end of the device declaration
+
+//end of the device declaration
 
 //defines the testing code.
 function main(){}
