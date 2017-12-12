@@ -1,4 +1,4 @@
-//Defines how all Devices with work.
+
 
 function Device(t,ma,c){
 
@@ -80,6 +80,8 @@ function Device(t,ma,c){
 //end of the device declaration
 
 //defines the testing code.
-function main(){}
+function main(){
+
+}
 //runs the testing code.
 main();
