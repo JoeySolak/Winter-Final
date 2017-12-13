@@ -64,15 +64,18 @@ function Device(t,ma,c){
     let time = min/60
 
     if(this.state == "off"){
-      let juice = juice - this.rate[0];
+       this.juice = this.juice - this.rate[0];
     }
     else if(this.state == "idle"){
-      let juice = juice - this.rate[1]
+       this.juice = this.juice - this.rate[1]
     }
     if(this.state == "active"){
-      let juice = juice - this.rate[2]
+       this.juice = this.juice - this.rate[2]
     }
   }
+    this.power = function(){
+      return this.juice;
+    }
 
 }
 
@@ -81,7 +84,24 @@ function Device(t,ma,c){
 
 //defines the testing code.
 function main(){
+  let flemphone = new Device("phone",3000,10000);
+  console.log(flemphone.power());
+  flemphone.on();
+  flemphone.wake();
+  flemphone.use(90);
+  console.log(flemphone.power());
+  flemphone.sleep();
+  flemphone.use(300);
+  console.log(flemphone.power());
+  flemphone.off();
+  flemphone.use(300);
+  console.log(flemphone.power());
+  flemphone.charge(60);
+  console.log(flemphone.power());
+  flemphone.charge(1000);
+  console.log(flemphone.power());
 
 }
 //runs the testing code.
 main();
+module.exports = Device;
