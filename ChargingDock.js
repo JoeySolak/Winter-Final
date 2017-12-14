@@ -19,10 +19,23 @@ function ChargingDock(){
     };
 
     this.unplug = function(dvcIdx){
+	if(this.leds[dvcIdx]== "yellow" || this.leds[dvcIdx] == green){
+let temp = this.ports[dvcIdx];
+this.ports[dvcIdx] = undefined;
+this.leds[dvcIdx] = "red";
+return temp;
         //type in here
     };
 
+
     this.chargeAll = function(min){
+for(let s=0; s < this.ports.length; s++){
+	if(this.leds[s] = "yellow" || this.leds[s] == "green"){
+		this.ports[s].charge(min);
+}
+if(this.ports[s].juice >= 0.99){
+	this.leds[s] = "green";
+}
         //type in here
     };
 
